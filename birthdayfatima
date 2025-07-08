@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎁 Birthday Surprise for Fatima 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at center, #ffe0f0, #ffbbdd);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      flex-direction: column;
+    }
+
+    .gift-box {
+      width: 200px;
+      height: 200px;
+      background: #ff69b4;
+      border-radius: 15px;
+      box-shadow: 0 0 30px #ff1493;
+      position: relative;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+      z-index: 2;
+    }
+
+    .gift-lid {
+      width: 220px;
+      height: 40px;
+      background: #ff1493;
+      position: absolute;
+      top: -40px;
+      left: -10px;
+      border-radius: 10px;
+      transform-origin: bottom;
+      transition: transform 0.6s ease;
+    }
+
+    .gift-box.open .gift-lid {
+      transform: rotateX(150deg);
+    }
+
+    .ribbon {
+      width: 20px;
+      height: 200px;
+      background: #fff;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    .sparkle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      animation: sparkle 2s ease forwards;
+      display: none;
+    }
+
+    @keyframes sparkle {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+      100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .message {
+      margin-top: 30px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      color: #c71585;
+      font-size: 1.5rem;
+      display: none;
+      padding: 20px;
+      background: #fff0f5;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff69b4;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 15px #ff69b4; }
+      50% { box-shadow: 0 0 40px #ff1493; }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #ff69b4;
+      animation: confetti-fall 3s linear infinite;
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="gift-box" id="giftBox" onclick="openGift()">
+    <div class="gift-lid"></div>
+    <div class="ribbon"></div>
+    <div class="sparkle" id="sparkle">✨</div>
+  </div>
+
+  <div class="message" id="message">
+    🎉 Happy Birthday Fatima! 🎉<br>
+    You are the sparkle in my life. 💖<br>
+    With all my love,<br>
+    Shanza 💕
+  </div>
+
+  <script>
+    function openGift() {
+      const box = document.getElementById('giftBox');
+      const sparkle = document.getElementById('sparkle');
+      const message = document.getElementById('message');
+
+      box.classList.add('open');
+      sparkle.style.display = 'block';
+
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 75%)`;
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+      }
+
+      setTimeout(() => {
+        message.style.display = 'block';
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
